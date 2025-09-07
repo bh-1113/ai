@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>📂 보고서 자동 생성</title>
+  <title>📑 문서 요약</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body { font-family: 'Arial', sans-serif; margin: 0; background: #f7f7f7; color:#333; }
@@ -11,7 +11,7 @@
     .container { max-width: 800px; margin: 30px auto; padding: 20px; background: white;
                  border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     .form-box { text-align: center; margin-bottom: 20px; }
-    input[type="text"] { width: 80%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; margin-bottom: 10px; }
+    input[type="file"], select { margin: 10px 0; padding: 8px; }
     button { background: #4a90e2; color: white; border: none; padding: 10px 16px;
              border-radius: 6px; cursor: pointer; margin: 5px; }
     button:hover { background: #357abd; }
@@ -20,59 +20,73 @@
 </head>
 <body>
   <header>
-    <h1>📂 보고서 자동 생성</h1>
-    <p>주제를 입력하면 자동으로 PPT 보고서를 생성합니다.</p>
+    <h1>📑 문서 요약</h1>
+    <p>문서를 업로드하면 AI가 자동으로 요약해줍니다.</p>
   </header>
 
   <div class="container">
     <div class="form-box">
-      <input type="text" id="topicInput" placeholder="예: 로봇공학, 한국 중형 하이브리드 차량">
+      <input type="file" id="fileInput" accept=".pdf,.docx,.pptx,.xlsx,.xls,.txt">
       <br>
-      <button onclick="generateReport()">보고서 생성</button>
+      <select id="exportType">
+        <option value="json">웹에서 요약 보기</option>
+        <option value="docx">DOCX 다운로드</option>
+        <option value="pptx">PPTX 다운로드</option>
+      </select>
+      <br>
+      <button onclick="uploadAndSummarize()">요약하기</button>
     </div>
 
-    <div id="reportResult" class="result" style="display:none;"></div>
-
-    <div id="downloadBtn" style="display:none; text-align:center;">
-      <button onclick="downloadReport()">📥 PPT 다운로드</button>
-    </div>
+    <div id="summaryResult" class="result" style="display:none;"></div>
   </div>
 
   <script>
-    async function generateReport() {
-      const topic = document.getElementById("topicInput").value.trim();
-      const resultDiv = document.getElementById("reportResult");
-      const downloadBtn = document.getElementById("downloadBtn");
+    async function uploadAndSummarize() {
+      const fileInput = document.getElementById("fileInput");
+      const exportType = document.getElementById("exportType").value;
+      const resultDiv = document.getElementById("summaryResult");
 
-      if (!topic) {
-        alert("주제를 입력하세요!");
+      if (!fileInput.files.length) {
+        alert("파일을 선택하세요!");
         return;
       }
 
       resultDiv.style.display = "block";
-      resultDiv.innerText = "⏳ 보고서 생성 중... 잠시만 기다려주세요.";
-      downloadBtn.style.display = "none";
+      resultDiv.innerText = "⏳ 요약 중... 잠시만 기다려주세요.";
+
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+      formData.append("export", exportType);
 
       try {
-        const response = await fetch(`/make_ppt?topic=${encodeURIComponent(topic)}`);
-        if (response.ok) {
-          resultDiv.innerText = "✅ 보고서 생성 완료!";
-          downloadBtn.style.display = "block";
+        const response = await fetch("/upload_summary", {
+          method: "POST",
+          body: formData
+        });
+
+        if (!response.ok) {
+          resultDiv.innerText = "⚠️ 요약 실패 (서버 오류)";
+          return;
+        }
+
+        if (exportType === "json") {
+          const data = await response.json();
+          resultDiv.innerText = data.summary;
         } else {
-          resultDiv.innerText = "⚠️ 보고서 생성 실패";
+          // 파일 다운로드 (docx, pptx)
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = exportType === "docx" ? "summary.docx" : "summary.pptx";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          resultDiv.innerText = "✅ 요약 파일이 다운로드되었습니다.";
         }
       } catch (err) {
         resultDiv.innerText = "❌ 서버 오류: " + err.message;
       }
-    }
-
-    function downloadReport() {
-      const topic = document.getElementById("topicInput").value.trim();
-      if (!topic) {
-        alert("먼저 주제를 입력하고 보고서를 생성하세요!");
-        return;
-      }
-      window.location.href = `/make_ppt?topic=${encodeURIComponent(topic)}`;
     }
   </script>
 </body>
