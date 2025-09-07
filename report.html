@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>📂 보고서 자동 생성</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
+<meta charset="utf-8"/>
+<title>📂 보고서 자동 생성</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<style>
     body { font-family: 'Arial', sans-serif; margin: 0; background: #f7f7f7; color:#333; }
     header { background: #50b3a2; color: white; padding: 30px 20px; text-align: center; }
     header h1 { margin: 0; }
@@ -18,19 +19,17 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>📂 보고서 자동 생성</h1>
-    <p>주제를 입력하면 자동으로 PPT 보고서를 생성합니다.</p>
-  </header>
-
-  <div class="container">
-    <input type="text" id="topicInput" placeholder="예: 한국 중형 하이브리드 차량">
-    <br>
-    <button onclick="makeReport()">보고서 생성</button>
-    <div id="reportResult" class="result" style="display:none;"></div>
-  </div>
-
-  <script>
+<header>
+<h1>📂 보고서 자동 생성</h1>
+<p>주제를 입력하면 자동으로 PPT 보고서를 생성합니다.</p>
+</header>
+<div class="container">
+<input id="topicInput" placeholder="예: 한국 중형 하이브리드 차량" type="text"/>
+<br/>
+<button onclick="makeReport()">보고서 생성</button>
+<div class="result" id="reportResult" style="display:none;"></div>
+</div>
+<script>
     async function makeReport() {
       const topic = document.getElementById("topicInput").value;
       const resultDiv = document.getElementById("reportResult");

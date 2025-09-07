@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>📑 문서 요약</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
+<meta charset="utf-8"/>
+<title>📑 문서 요약</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<style>
     body { font-family: 'Arial', sans-serif; margin: 0; background: #f7f7f7; color:#333; }
     header { background: #4a90e2; color: white; padding: 30px 20px; text-align: center; }
     header h1 { margin: 0; }
@@ -22,45 +23,41 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>📑 문서 요약</h1>
-    <p>문서를 업로드하면 AI가 자동으로 요약해줍니다.</p>
-  </header>
-
-  <div class="container">
-    <div class="form-box">
-      <input type="file" id="fileInput" accept=".pdf,.docx,.pptx,.xlsx,.xls,.txt">
-      <br>
-      <select id="exportType">
-        <option value="json">웹에서 요약 보기</option>
-        <option value="docx">DOCX 다운로드</option>
-        <option value="pptx">PPTX 다운로드</option>
-      </select>
-      <br>
-      <button onclick="uploadAndSummarize()">요약하기</button>
-    </div>
-
-    <div class="guide">
-      <h2>📌 사용 안내</h2>
-      <ul>
-        <li>첨부 가능한 파일 종류:
+<header>
+<h1>📑 문서 요약</h1>
+<p>문서를 업로드하면 AI가 자동으로 요약해줍니다.</p>
+</header>
+<div class="container">
+<div class="form-box">
+<input accept=".pdf,.docx,.pptx,.xlsx,.xls,.txt" id="fileInput" type="file"/>
+<br/>
+<select id="exportType">
+<option value="json">웹에서 요약 보기</option>
+<option value="docx">DOCX 다운로드</option>
+<option value="pptx">PPTX 다운로드</option>
+</select>
+<br/>
+<button onclick="uploadAndSummarize()">요약하기</button>
+</div>
+<div class="guide">
+<h2>📌 사용 안내</h2>
+<ul>
+<li>첨부 가능한 파일 종류:
           <strong>PDF(.pdf), Word(.docx), PowerPoint(.pptx), Excel(.xlsx, .xls), 텍스트(.txt)</strong>
-        </li>
-        <li>결과 출력 방식:
+</li>
+<li>결과 출력 방식:
           <ul>
-            <li>🔹 <b>웹에서 요약 보기</b> → 화면에 요약 결과 표시</li>
-            <li>🔹 <b>DOCX 다운로드</b> → 워드 파일로 저장</li>
-            <li>🔹 <b>PPTX 다운로드</b> → 슬라이드 파일로 저장</li>
-          </ul>
-        </li>
-        <li>⏳ 파일 크기와 내용에 따라 처리 시간이 다소 걸릴 수 있습니다.</li>
-      </ul>
-    </div>
-
-    <div id="summaryResult" class="result" style="display:none;"></div>
-  </div>
-
-  <script>
+<li>🔹 <b>웹에서 요약 보기</b> → 화면에 요약 결과 표시</li>
+<li>🔹 <b>DOCX 다운로드</b> → 워드 파일로 저장</li>
+<li>🔹 <b>PPTX 다운로드</b> → 슬라이드 파일로 저장</li>
+</ul>
+</li>
+<li>⏳ 파일 크기와 내용에 따라 처리 시간이 다소 걸릴 수 있습니다.</li>
+</ul>
+</div>
+<div class="result" id="summaryResult" style="display:none;"></div>
+</div>
+<script>
     async function uploadAndSummarize() {
       const fileInput = document.getElementById("fileInput");
       const exportType = document.getElementById("exportType").value;
