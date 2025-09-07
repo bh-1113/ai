@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>이미지 생성</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이미지 생성</title>
+  <style>
     body { margin:0; background:#f7f7f7; color:#333; font-family: Arial, sans-serif; }
     nav { background:#333; padding:10px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:sticky; top:0; z-index:10; }
     nav a { color:#fff; text-decoration:none; font-size:14px; padding:6px 10px; border-radius:6px; }
@@ -15,27 +14,73 @@
     .card{ background:#fff; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,.1); padding:18px; margin-bottom:16px; }
     .link-btn{ display:inline-block; background:#fff; color:#4a90e2; padding:10px 16px; border-radius:20px; text-decoration:none; margin-top:10px; font-weight:bold; }
   </style>
+
+<style>
+  body { margin:0; font-family: 'Arial', sans-serif; }
+  .navbar {
+    position: sticky;
+    top: 0;
+    background: #4a90e2;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+  }
+  .navbar nav a {
+    color: white;
+    margin: 0 12px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, background 0.3s;
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+  .navbar nav a:hover {
+    background: white;
+    color: #4a90e2;
+  }
+  .navbar nav a.active {
+    background: #357abd;
+    color: #fff;
+  }
+</style>
+
 </head>
 <body>
-<nav>
-<a href="index.html">🏠 홈</a>
-<a href="writing.html">📝 글쓰기</a>
-<a href="images.html">🎨 이미지 생성</a>
-<a href="speech.html">🎙️ 음성 인식</a>
-<a href="data.html">📊 데이터 분석</a>
-<a href="chatbot.html">🤖 챗봇</a>
-<a href="report.html">📂 보고서 자동 생성</a>
-</nav>
-<header>
-<h1>🎨 이미지 생성</h1>
-<a class="link-btn" href="https://openai.com/dall-e" rel="noopener" target="_blank">👉 DALL·E 바로가기</a>
+
+<header class="navbar">
+  <nav>
+    <a href="index.html">🏠 홈</a>
+    <a href="writing.html">📝 글쓰기</a>
+    <a href="image.html">🎨 이미지 생성</a>
+    <a href="speech.html">🎙️ 음성 인식</a>
+    <a href="data.html">📊 데이터 분석</a>
+    <a href="chatbot.html">🤖 챗봇</a>
+    <a href="report.html">📑 보고서 자동 생성</a>
+    <a href="summary.html">📂 문서 요약</a>
+  </nav>
 </header>
-<div class="container">
-<div class="card">
-<h2>예제 프롬프트</h2>
-<p>“우주에서 책을 읽는 고양이, 수채화 스타일, 따뜻한 색감”</p>
-<p>원하는 <strong>주제/스타일/분위기</strong>를 구체적으로 적으면 더 만족스러운 결과를 얻습니다.</p>
-</div>
-</div>
+
+  <nav>
+    <a href="index.html">🏠 홈</a>
+    <a href="writing.html">📝 글쓰기</a>
+    <a href="images.html">🎨 이미지 생성</a>
+    <a href="speech.html">🎙️ 음성 인식</a>
+    <a href="data.html">📊 데이터 분석</a>
+    <a href="chatbot.html">🤖 챗봇</a>
+    <a href="report.html">📂 보고서 자동 생성</a>
+  </nav>
+
+  <header>
+    <h1>🎨 이미지 생성</h1>
+    <a class="link-btn" href="https://openai.com/dall-e" target="_blank" rel="noopener">👉 DALL·E 바로가기</a>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>예제 프롬프트</h2>
+      <p>“우주에서 책을 읽는 고양이, 수채화 스타일, 따뜻한 색감”</p>
+      <p>원하는 <strong>주제/스타일/분위기</strong>를 구체적으로 적으면 더 만족스러운 결과를 얻습니다.</p>
+    </div>
+  </div>
 </body>
 </html>
