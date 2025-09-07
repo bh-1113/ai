@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>📄 문서 요약</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: 'Arial', sans-serif; margin: 0; background: #f7f7f7; color:#333; }
+    header { background: #4a90e2; color: white; padding: 20px; text-align: center; }
+    nav { background: #333; padding: 10px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    nav a { color: white; text-decoration: none; font-size: 14px; padding: 6px 10px; border-radius: 6px; }
+    nav a:hover { background: #555; }
+    .container { max-width: 800px; margin: 30px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    h1 { text-align: center; margin-bottom: 20px; }
+    input[type="file"] { display: block; margin: 20px auto; }
+    button { background: #4a90e2; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #357abd; }
+    #result { margin-top: 20px; padding: 15px; background: #f0f8ff; border-radius: 8px; }
+    .download-buttons { margin-top: 20px; display: flex; gap: 10px; justify-content: center; }
+    .download-buttons button { background: #28a745; }
+    .download-buttons button:hover { background: #1e7e34; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📄 문서 요약</h1>
+    <p>문서를 업로드하면 AI가 자동으로 요약해줍니다.</p>
+  </header>
+
+  <!-- 메뉴바 -->
+  <nav>
+    <a href="index.html">🏠 홈</a>
+    <a href="writing.html">📝 글쓰기</a>
+    <a href="images.html">🎨 이미지 생성</a>
+    <a href="speech.html">🎙️ 음성 인식</a>
+    <a href="data.html">📊 데이터 분석</a>
+    <a href="chatbot.html">🤖 챗봇</a>
+    <a href="report.html">📂 보고서 생성</a>
+    <a href="summary.html">📄 문서 요약</a>
+  </nav>
+
+  <div class="container">
+    <h2>📂 문서 업로드</h2>
+    <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt" />
+    <button onclick="summarize()">요약하기</button>
+
+    <div id="result" style="display:none;">
+      <h3>📝 요약 결과</h3>
+      <p id="summaryText"></p>
+
+      <div class="download-buttons">
+        <button onclick="downloadFile('doc')">📄 Word로 저장</button>
+        <button onclick="downloadFile('ppt')">📊 PPT로 저장</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function summarize() {
+      const fileInput = document.getElementById("fileInput");
+      if (!fileInput.files.length) {
+        alert("먼저 문서를 업로드해주세요!");
+        return;
+      }
+
+      // 지금은 예제라서 실제 요약 대신 샘플 텍스트 표시
+      document.getElementById("result").style.display = "block";
+      document.getElementById("summaryText").innerText =
+        "이 문서는 인공지능의 다양한 활용법을 설명하고 있으며, 주요 주제는 글쓰기, 이미지 생성, 음성 인식, 데이터 분석, 챗봇 개발입니다.";
+    }
+
+    function downloadFile(type) {
+      alert(type.toUpperCase() + " 파일로 저장하는 기능은 백엔드 연결 후 활성화됩니다!");
+      // 실제 구현 시 API 호출해서 파일 다운로드
+    }
+  </script>
+</body>
+</html>
