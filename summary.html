@@ -16,6 +16,9 @@
              border-radius: 6px; cursor: pointer; margin: 5px; }
     button:hover { background: #357abd; }
     .result { margin-top: 20px; padding: 15px; background: #f0f4ff; border-radius: 8px; white-space: pre-wrap; }
+    .guide { margin-top: 20px; padding: 15px; background: #fff7e6; border: 1px solid #ffd27f; border-radius: 8px; }
+    .guide h2 { margin-top: 0; font-size: 18px; color: #e67e22; }
+    .guide ul { text-align: left; }
   </style>
 </head>
 <body>
@@ -35,6 +38,23 @@
       </select>
       <br>
       <button onclick="uploadAndSummarize()">요약하기</button>
+    </div>
+
+    <div class="guide">
+      <h2>📌 사용 안내</h2>
+      <ul>
+        <li>첨부 가능한 파일 종류:
+          <strong>PDF(.pdf), Word(.docx), PowerPoint(.pptx), Excel(.xlsx, .xls), 텍스트(.txt)</strong>
+        </li>
+        <li>결과 출력 방식:
+          <ul>
+            <li>🔹 <b>웹에서 요약 보기</b> → 화면에 요약 결과 표시</li>
+            <li>🔹 <b>DOCX 다운로드</b> → 워드 파일로 저장</li>
+            <li>🔹 <b>PPTX 다운로드</b> → 슬라이드 파일로 저장</li>
+          </ul>
+        </li>
+        <li>⏳ 파일 크기와 내용에 따라 처리 시간이 다소 걸릴 수 있습니다.</li>
+      </ul>
     </div>
 
     <div id="summaryResult" class="result" style="display:none;"></div>
