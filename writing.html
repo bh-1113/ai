@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>글쓰기 · ChatGPT 사용법</title>
+  <style>
+    body { margin:0; background:#f7f7f7; color:#333; font-family: Arial, sans-serif; }
+    nav { background:#333; padding:10px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:sticky; top:0; z-index:10; }
+    nav a { color:#fff; text-decoration:none; font-size:14px; padding:6px 10px; border-radius:6px; }
+    nav a:hover { background:#555; }
+    header { background:#4a90e2; color:#fff; text-align:center; padding:28px 16px; }
+    header .link-btn{ display:inline-block; background:#fff; color:#4a90e2; padding:10px 16px; border-radius:20px; text-decoration:none; margin-top:10px; font-weight:bold; }
+    .container{ max-width:1000px; margin:24px auto; padding:0 16px; display:grid; grid-template-columns: 1fr; gap:20px; }
+    @media (min-width:900px){ .container{ grid-template-columns: 1.1fr .9fr; } }
+    .card{ background:#fff; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,.1); overflow:hidden; }
+    .card h2{ margin:0; padding:18px; font-size:20px; border-bottom:1px solid #eee; }
+    .card .body{ padding:18px; }
+    .screenshot{ width:100%; height:auto; display:block; }
+    .muted{ color:#666; }
+    pre{ background:#f0f3f7; padding:12px; border-radius:8px; overflow:auto; }
+    figcaption{ font-size:12px; color:#666; padding:8px 12px; border-top:1px solid #eee; background:#fafafa; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">🏠 홈</a>
+    <a href="writing.html">📝 글쓰기</a>
+    <a href="images.html">🎨 이미지 생성</a>
+    <a href="speech.html">🎙️ 음성 인식</a>
+    <a href="data.html">📊 데이터 분석</a>
+    <a href="chatbot.html">🤖 챗봇</a>
+    <a href="report.html">📂 보고서 자동 생성</a>
+    <a href="https://chat.openai.com/" target="_blank" rel="noopener" style="background:#4a90e2">ChatGPT 열기 ↗</a>
+  </nav>
+
+  <header>
+    <h1>📝 ChatGPT 글쓰기</h1>
+    <p class="muted">스크린샷 이미지를 외부 URL에서 불러와, 별도 저장 없이도 사용법을 확인할 수 있습니다.</p>
+    <a class="link-btn" href="https://chat.openai.com/" target="_blank" rel="noopener">👉 ChatGPT 바로가기</a>
+  </header>
+
+  <div class="container">
+    <!-- 왼쪽: 사용법 -->
+    <article class="card">
+      <h2>빠른 시작</h2>
+      <div class="body">
+        <ol>
+          <li><strong>ChatGPT 열기</strong> — 상단 버튼을 누르세요.</li>
+          <li><strong>새 대화 시작</strong> — 하단 입력창을 클릭.</li>
+          <li><strong>프롬프트 작성</strong> — 예: “회의 초대 메일을 150자 내로 공손하게 써줘.”</li>
+          <li><strong>수정·반복</strong> — “좀 더 친근하게”, “불릿 3개로 바꿔줘”처럼 추가 지시.</li>
+          <li><strong>복사/저장</strong> — 결과 영역에서 복사하거나 파일로 저장.</li>
+        </ol>
+        <div style="margin-top:12px; padding:12px; border:1px dashed #7bb0f2; border-radius:10px; background:#eef6ff;">
+          팁: <strong>역할·목표·제약</strong>을 분명히 하면 품질이 올라갑니다.<br/>
+          예) “너는 <em>인사담당자</em>야. <em>신입 개발자 채용 공고</em>를 <em>친근한 톤</em>으로 <em>700자</em> 이내로 써줘. <em>지원 마감일</em> 포함.”
+        </div>
+      </div>
+    </article>
+
+    <!-- 오른쪽: 실제 스크린샷(외부 URL) -->
+    <figure class="card">
+      <h2>ChatGPT 화면 예시</h2>
+      <img class="screenshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Chatgpt-screenshot.png/1024px-Chatgpt-screenshot.png" alt="ChatGPT 초기 화면 (Wikimedia Commons)">
+      <figcaption>이미지: <a href="https://commons.wikimedia.org/wiki/File:Chatgpt-screenshot.png" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption>
+    </figure>
+  </div>
+
+  <section class="card" style="max-width:1000px; margin:20px auto;">
+    <h2>예제 프롬프트: 블로그 초안 만들기</h2>
+    <div class="body">
+      <p class="muted">아래 프롬프트를 복사해서 붙여넣고, 톤/길이/대상을 바꾸며 다듬어 보세요.</p>
+      <pre>주제: "AI로 업무 자동화 시작하기(입문자용)"
+형식: 소제목 포함 블로그 초안
+톤: 친근하고 명확하게
+길이: 800~1,000자
+추가: 마지막에 체크리스트 4개</pre>
+      <img class="screenshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/ChatGPT.png/1024px-ChatGPT.png" alt="ChatGPT 대화 예시 (Wikimedia Commons)">
+      <figcaption style="font-size:12px; color:#666; padding:8px 12px; border-top:1px solid #eee; background:#fafafa;">
+        이미지: <a href="https://en.wikipedia.org/wiki/File:ChatGPT.png" target="_blank" rel="noopener">Wikimedia (CC BY 3.0)</a>
+      </figcaption>
+    </div>
+  </section>
+</body>
+</html>

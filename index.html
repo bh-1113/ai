@@ -5,116 +5,68 @@
   <title>AI로 할 수 있는 일들</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      background: #f7f7f7;
-    }
-
-    header {
-      background: #4a90e2;
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin-bottom: 10px;
-    }
-
-    .chat-button {
-      background: white;
-      color: #4a90e2;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      font-size: 16px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .chat-button:hover {
-      background: #e6f0ff;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      display: block;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-
-    h2 {
-      color: #333;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #666;
-    }
+    body { font-family: 'Arial', sans-serif; margin: 0; background: #f7f7f7; color:#333; }
+    header { background: #4a90e2; color: white; padding: 40px 20px; text-align: center; }
+    header h1 { margin-bottom: 10px; }
+    /* 메뉴바 */
+    nav { background: #333; padding: 10px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    nav a { color: white; text-decoration: none; font-size: 14px; padding: 6px 10px; border-radius: 6px; }
+    nav a:hover { background: #555; }
+    .container { max-width: 980px; margin: 30px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-decoration: none; color: inherit; transition: transform 0.2s ease, box-shadow 0.2s ease; display: block; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+    footer { text-align: center; padding: 20px; color: #666; }
   </style>
 </head>
 <body>
-
-  <!-- 상단: ChatGPT 소개 및 버튼 -->
   <header>
     <h1>AI로 할 수 있는 일들</h1>
-    <p>아래 항목들을 보고 궁금한 게 있다면 ChatGPT에게 직접 물어보세요!</p>
-    <a class="chat-button" href="https://chat.openai.com/" target="_blank">
-      💬 ChatGPT와 대화하기
-    </a>
+    <p>궁금한 메뉴를 눌러서 예제와 함께 살펴보세요!</p>
   </header>
 
-  <!-- 본문: AI가 할 수 있는 일들 -->
+  <!-- 메뉴바 -->
+  <nav>
+    <a href="index.html">🏠 홈</a>
+    <a href="writing.html">📝 글쓰기</a>
+    <a href="images.html">🎨 이미지 생성</a>
+    <a href="speech.html">🎙️ 음성 인식</a>
+    <a href="data.html">📊 데이터 분석</a>
+    <a href="chatbot.html">🤖 챗봇</a>
+    <a href="report.html">📂 보고서 자동 생성</a>
+  </nav>
+
   <div class="container">
-    <a class="card" href="https://chat.openai.com/" target="_blank">
+    <a class="card" href="writing.html">
       <h2>📝 글쓰기</h2>
-      <p>AI는 블로그 글, 이메일, 이야기, 요약 등 다양한 글을 빠르게 작성할 수 있어요.</p>
+      <p>ChatGPT로 블로그 글, 이메일, 요약 등을 빠르게 작성하기.</p>
     </a>
 
-    <a class="card" href="https://openai.com/dall-e" target="_blank">
+    <a class="card" href="images.html">
       <h2>🎨 이미지 생성</h2>
-      <p>상상 속 장면을 설명만으로 그림으로 만들어주는 AI도 있어요!</p>
+      <p>DALL·E 등으로 상상 속 장면을 이미지로 만들기.</p>
     </a>
 
-    <a class="card" href="https://cloud.google.com/speech-to-text" target="_blank">
+    <a class="card" href="speech.html">
       <h2>🎙️ 음성 인식</h2>
-      <p>음성을 텍스트로 바꾸거나, AI 비서처럼 말을 이해하고 응답할 수 있어요.</p>
+      <p>음성을 텍스트로 변환하고, 음성 명령 이해시키기.</p>
     </a>
 
-    <a class="card" href="https://colab.research.google.com/" target="_blank">
+    <a class="card" href="data.html">
       <h2>📊 데이터 분석</h2>
-      <p>AI는 복잡한 데이터를 빠르게 분석하고 요약해주는 데에 탁월해요.</p>
+      <p>Colab 등에서 파이썬으로 분석/시각화 수행하기.</p>
     </a>
 
-    <a class="card" href="https://dialogflow.cloud.google.com/" target="_blank">
+    <a class="card" href="chatbot.html">
       <h2>🤖 챗봇</h2>
-      <p>웹사이트, 앱, 고객센터 등에서 사용자 질문에 자동으로 답해주는 챗봇도 만들 수 있어요.</p>
+      <p>Dialogflow 등으로 고객센터용 챗봇 만들기.</p>
+    </a>
+
+    <a class="card" href="report.html">
+      <h2>📂 보고서 자동 생성</h2>
+      <p>주제에 맞는 보고서를 Word/Excel/PPT로 만들고 공유하기.</p>
     </a>
   </div>
 
-  <footer>
-    © 2025 AI 활용 가이드
-  </footer>
-
+  <footer>© 2025 AI 활용 가이드</footer>
 </body>
 </html>

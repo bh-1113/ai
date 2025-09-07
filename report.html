@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📂 보고서 자동 생성</title>
+  <style>
+    body { margin:0; font-family:Arial, sans-serif; background:#f7f7f7; color:#333; }
+    header { background:#4a90e2; color:white; text-align:center; padding:30px 20px; }
+    header h1{margin:0 0 10px}
+    nav { background:#333; padding:10px; display:flex; gap:15px; justify-content:center; flex-wrap:wrap; position:sticky; top:0; z-index:10; }
+    nav a { color:white; text-decoration:none; font-size:14px; padding:6px 10px; border-radius:6px; }
+    nav a:hover {background:#555;}
+    .container { max-width:1000px; margin:30px auto; padding:20px; display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:20px; }
+    .card { background:white; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); padding:20px; display:flex; flex-direction:column; }
+    .card img { max-width:100%; border-radius:8px; margin:10px 0; }
+    .card h2 {margin-top:0}
+    pre { background:#f0f0f0; padding:10px; border-radius:6px; font-size:13px; white-space:pre-wrap; }
+    .btn { display:inline-block; margin-top:10px; padding:8px 14px; background:#4a90e2; color:white; border-radius:6px; text-decoration:none; font-size:14px; }
+    .btn:hover {background:#357ac9;}
+    footer {text-align:center; padding:20px; color:#666; margin-top:20px;}
+    .note { background:#fff8db; border:1px solid #f1da7b; padding:10px; border-radius:8px; margin:0 20px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">🏠 홈</a>
+  <a href="writing.html">📝 글쓰기</a>
+  <a href="images.html">🎨 이미지 생성</a>
+  <a href="speech.html">🎙️ 음성 인식</a>
+  <a href="data.html">📊 데이터 분석</a>
+  <a href="chatbot.html">🤖 챗봇</a>
+  <a href="report.html">📂 보고서 자동 생성</a>
+</nav>
+
+<header>
+  <h1>📂 보고서 자동 생성</h1>
+  <p>ChatGPT로 Word, Excel, PowerPoint 형식의 보고서를 만드는 방법을 배워보세요!</p>
+</header>
+
+<div class="note">
+  <strong>알림:</strong> GitHub Pages 같은 정적 사이트에서는 버튼으로 파일을 '자동 생성'할 수 없습니다.
+  자동 생성을 원하면 별도 백엔드(예: Render + FastAPI)가 필요합니다.
+</div>
+
+<div class="container">
+  <div class="card">
+    <h2>📝 Word 보고서</h2>
+    <p>ChatGPT에게 문서를 작성시키고, 결과를 Word(.docx)로 저장하세요.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Microsoft_Word_icon_%282019%E2%80%93present%29.svg/512px-Microsoft_Word_icon_%282019%E2%80%93present%29.svg.png" alt="Word 아이콘">
+    <p><strong>예시 프롬프트:</strong></p>
+    <pre>“AI가 교육 분야에 미치는 영향”이라는 주제로 보고서를 작성해줘.
+- 목차 포함
+- 2000자 내외
+- 마지막에 참고문헌 섹션 추가</pre>
+    <a class="btn" href="#">📥 Word 파일 다운로드 (예시)</a>
+  </div>
+
+  <div class="card">
+    <h2>📊 Excel 보고서</h2>
+    <p>표 데이터를 생성한 뒤 Excel(.xlsx)에 옮겨 활용할 수 있습니다.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/512px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" alt="Excel 아이콘">
+    <p><strong>예시 프롬프트:</strong></p>
+    <pre>“2025년 매출 목표 달성을 위한 월별 예산표”를 작성해줘.
+항목: 광고비, 인건비, 서버비용, 마케팅
+형식: 표 형태
+단위: 만원</pre>
+    <a class="btn" href="#">📥 Excel 파일 다운로드 (예시)</a>
+  </div>
+
+  <div class="card">
+    <h2>📑 PowerPoint 보고서</h2>
+    <p>슬라이드 목차와 요약을 받아 PPT로 정리하세요.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Microsoft_Office_PowerPoint_%282019%E2%80%93present%29.svg/512px-Microsoft_Office_PowerPoint_%282019%E2%80%93present%29.svg.png" alt="PowerPoint 아이콘">
+    <p><strong>예시 프롬프트:</strong></p>
+    <pre>“AI와 자동화의 미래” 주제로 발표 자료를 만들어줘.
+- 10장의 슬라이드
+- 각 슬라이드 제목과 요약 내용 포함
+- 발표용 원고 추가</pre>
+    <a class="btn" href="#">📥 PPT 파일 다운로드 (예시)</a>
+  </div>
+</div>
+
+<footer>© 2025 AI 활용 가이드 · 아이콘 출처: Wikimedia Commons</footer>
+</body>
+</html>
