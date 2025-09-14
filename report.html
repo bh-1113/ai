@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8"/>
-  <title>📑 보고서 자동 생성</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-  <!-- PptxGenJS 라이브러리 CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pptxgenjs/3.11.0/pptxgen.bundle.js"></script>
-
+  <meta charset="UTF-8">
+  <title>📂 보고서 자동 생성</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body { font-family: 'Arial', sans-serif; margin: 0; background: #f7f7f7; color:#333; }
-
-    /* === Header === */
-    header {
-      background: #50b3a2;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
+    header { background: #50b3a2; color: white; padding: 30px 20px; text-align: center; }
     header h1 { margin: 0; }
+    .container { max-width: 800px; margin: 30px auto; padding: 20px; background: white;
+                 border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+    input[type="text"] { width: 80%; padding: 8px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; }
+    button { background: #50b3a2; color: white; border: none; padding: 10px 16px;
+             border-radius: 6px; cursor: pointer; margin-top: 10px; font-weight: bold; }
+    button:hover { background: #3a8579; }
+    .result { margin-top: 20px; padding: 15px; background: #f0fff4; border-radius: 8px; white-space: pre-wrap; text-align: left; }
+  </style>
 
-    /* === Navbar === */
+  <style>
+    body { margin:0; font-family: 'Arial', sans-serif; }
     .navbar {
       position: sticky;
       top: 0;
@@ -46,111 +44,106 @@
       background: #357abd;
       color: #fff;
     }
-
-    /* === Container === */
-    .container {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    button {
-      background: #4a90e2;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 10px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    button:hover { background: #357abd; }
-
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      resize: vertical;
-      font-size: 14px;
-    }
-
-    .result {
-      margin-top: 20px;
-      padding: 15px;
-      background: #f0f4ff;
-      border-radius: 8px;
-      white-space: pre-wrap;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #666;
-    }
   </style>
 </head>
 <body>
 
-  <!-- ✅ 공통 네비게이션 -->
-  <header class="navbar">
-    <nav>
-      <a href="index.html">🏠 홈</a>
-      <a href="writing.html">📝 글쓰기</a>
-      <a href="images.html">🎨 이미지 생성</a>
-      <a href="speech.html">🎙️ 음성 인식</a>
-      <a href="data.html">📊 데이터 분석</a>
-      <a href="chatbot.html">🤖 챗봇</a>
-      <a href="report.html" class="active">📑 보고서 자동 생성</a>
-      <a href="summary.html">📂 문서 요약</a>
-    </nav>
-  </header>
+<header class="navbar">
+  <nav>
+    <a href="index.html">🏠 홈</a>
+    <a href="writing.html">📝 글쓰기</a>
+    <a href="images.html">🎨 이미지 생성</a>
+    <a href="speech.html">🎙️ 음성 인식</a>
+    <a href="data.html">📊 데이터 분석</a>
+    <a href="chatbot.html">🤖 챗봇</a>
+    <a href="report.html" class="active">📑 보고서 자동 생성</a>
+    <a href="summary.html">📂 문서 요약</a>
+  </nav>
+</header>
 
-  <!-- ✅ 페이지 헤더 -->
-  <header>
-    <h1>📑 보고서 자동 생성</h1>
-    <p>텍스트를 입력하면 요약된 보고서를 생성합니다.</p>
-  </header>
+<header>
+  <h1>📂 보고서 자동 생성</h1>
+  <p>주제를 입력하면 웹에서 미리 내용을 확인하고, PPT로 다운로드할 수 있습니다.</p>
+</header>
 
-  <!-- ✅ 컨텐츠 -->
-  <div class="container">
-    <h2>자동 보고서 생성기</h2>
-    <textarea id="inputText" rows="6"></textarea>
-    <br>
-    <button onclick="generateReport()">보고서 생성</button>
-    <div id="output" class="result"></div>
-  </div>
+<div class="container">
+  <input type="text" id="topicInput" placeholder="예: 한국 중형 하이브리드 차량">
+  <br>
+  <button onclick="previewReport()">내용 확인</button>
+  <button onclick="downloadReport()">PPT 다운로드</button>
 
-  <footer>© 2025 AI 활용 가이드</footer>
+  <div id="reportResult" class="result" style="display:none;"></div>
+</div>
 
-  <script>
-    function generateReport() {
-      const text = document.getElementById("inputText").value.trim();
-      const outputDiv = document.getElementById("output");
+<script>
+  let lastContent = ""; // 마지막 생성된 보고서 내용 저장
 
-      if (!text) {
-        alert("텍스트를 입력해주세요!");
+  // 1️⃣ 웹에서 내용 미리보기
+  async function previewReport() {
+    const topic = document.getElementById("topicInput").value.trim();
+    const resultDiv = document.getElementById("reportResult");
+
+    if (!topic) {
+      alert("주제를 입력하세요!");
+      return;
+    }
+
+    resultDiv.style.display = "block";
+    resultDiv.innerText = "⏳ 내용 생성 중... 잠시만 기다려주세요.";
+
+    try {
+      const response = await fetch(`https://ai-report-api-m1vs.onrender.com/generate_content?topic=${encodeURIComponent(topic)}`);
+      if (!response.ok) {
+        resultDiv.innerText = "⚠️ 내용 생성 실패 (서버 오류)";
         return;
       }
 
-      // 1️⃣ 웹페이지에 보고서 내용 표시
-      const summary = text.length > 100 ? text.substring(0, 100) + "..." : text;
-      outputDiv.innerText = "📄 보고서 요약:\n\n" + summary;
-
-      // 2️⃣ PPT 생성
-      const pptx = new PptxGenJS();
-      const slide = pptx.addSlide();
-      slide.addText(text, { x: 0.5, y: 0.5, w: 8, h: 5, fontSize: 18, color: '363636' });
-
-      // 3️⃣ PPT 다운로드
-      pptx.writeFile("report.pptx").then(() => {
-        outputDiv.innerText += "\n\n✅ PPT 파일이 다운로드되었습니다.";
-      });
+      const data = await response.json();
+      lastContent = data.content || "내용이 없습니다.";
+      resultDiv.innerText = lastContent;
+    } catch (err) {
+      resultDiv.innerText = "❌ 서버 오류: " + err.message;
     }
-  </script>
+  }
+
+  // 2️⃣ PPT 다운로드
+  async function downloadReport() {
+    const topic = document.getElementById("topicInput").value.trim();
+    const resultDiv = document.getElementById("reportResult");
+
+    if (!topic) {
+      alert("주제를 입력하세요!");
+      return;
+    }
+    if (!lastContent) {
+      alert("먼저 '내용 확인' 버튼으로 내용을 생성하세요.");
+      return;
+    }
+
+    resultDiv.innerText = "⏳ PPT 생성 중... 잠시만 기다려주세요.";
+
+    try {
+      const response = await fetch(`https://ai-report-api-m1vs.onrender.com/make_ppt?topic=${encodeURIComponent(topic)}`);
+      if (!response.ok) {
+        resultDiv.innerText = "⚠️ PPT 생성 실패 (서버 오류)";
+        return;
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${topic}_보고서.pptx`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      resultDiv.innerText = "✅ 보고서 PPT가 다운로드되었습니다.";
+    } catch (err) {
+      resultDiv.innerText = "❌ 서버 오류: " + err.message;
+    }
+  }
+</script>
+
 </body>
 </html>
