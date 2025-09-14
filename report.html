@@ -4,13 +4,16 @@
   <meta charset="utf-8"/>
   <title>📑 보고서 자동 생성</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- PptxGenJS 라이브러리 CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pptxgenjs/3.11.0/pptxgen.bundle.js"></script>
 
   <style>
     body { font-family: 'Arial', sans-serif; margin: 0; background: #f7f7f7; color:#333; }
 
     /* === Header === */
     header {
-      background: #50b3a2;   /* index.html과 동일한 초록빛 */
+      background: #50b3a2;
       color: white;
       padding: 30px 20px;
       text-align: center;
@@ -54,7 +57,6 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    /* === Button === */
     button {
       background: #4a90e2;
       color: white;
@@ -68,7 +70,6 @@
     }
     button:hover { background: #357abd; }
 
-    /* === Textarea === */
     textarea {
       width: 100%;
       padding: 10px;
@@ -78,7 +79,6 @@
       font-size: 14px;
     }
 
-    /* === Result Box === */
     .result {
       margin-top: 20px;
       padding: 15px;
@@ -87,7 +87,6 @@
       white-space: pre-wrap;
     }
 
-    /* === Footer === */
     footer {
       text-align: center;
       padding: 20px;
@@ -130,13 +129,27 @@
 
   <script>
     function generateReport() {
-      const text = document.getElementById("inputText").value;
-      if (!text.trim()) {
+      const text = document.getElementById("inputText").value.trim();
+      const outputDiv = document.getElementById("output");
+
+      if (!text) {
         alert("텍스트를 입력해주세요!");
         return;
       }
+
+      // 1️⃣ 웹페이지에 보고서 내용 표시
       const summary = text.length > 100 ? text.substring(0, 100) + "..." : text;
-      document.getElementById("output").innerText = "📄 보고서 요약:\n\n" + summary;
+      outputDiv.innerText = "📄 보고서 요약:\n\n" + summary;
+
+      // 2️⃣ PPT 생성
+      const pptx = new PptxGenJS();
+      const slide = pptx.addSlide();
+      slide.addText(text, { x: 0.5, y: 0.5, w: 8, h: 5, fontSize: 18, color: '363636' });
+
+      // 3️⃣ PPT 다운로드
+      pptx.writeFile("report.pptx").then(() => {
+        outputDiv.innerText += "\n\n✅ PPT 파일이 다운로드되었습니다.";
+      });
     }
   </script>
 </body>
